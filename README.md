@@ -23,3 +23,8 @@ In order to use the application you need to:
 
 If you want to use the already vectorized data ask me, otherwise open a free account on PineCone and use the data_vectorizer to upload data to it.
 As of now the only data format supported is MD
+
+## Architecture
+
+The application uses PineCone as its vector store.
+The queries and the LLM are handled by LangChain while the LLM itself is LLAMA2.
