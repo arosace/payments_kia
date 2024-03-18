@@ -12,6 +12,8 @@ load_dotenv()
 PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')
 PINECONE_API_ENV = os.getenv('PINECONE_API_ENV')
 HF_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
+PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME")
+PINECONE_NAME_SPACE = os.getenv("PINECONE_NAME_SPACE")
 
 def verbalize_pinecone_response(response,original_chunks):
     #This function assumes that the ids of the matches are numerical
@@ -32,8 +34,7 @@ embedded_data_list = embeddings.embed_documents([t.page_content for t in docs])
 
 #initialize index
 pc = Pinecone(api_key=PINECONE_API_KEY)
-index_name = "ea" # put in the name of your pinecone index here
-index = pc.Index(index_name)
+index = pc.Index(PINECONE_INDEX_NAME)
 
 #embed query
 query="Can I use mongosh?"
@@ -43,7 +44,7 @@ embedded_query = embeddings.embed_query(query)
 response = index.query(
   vector=embedded_query,
   top_k=10,
-  namespace='ea1',
+  namespace=PINECONE_NAME_SPACE,
   include_metadata=True
 )
 

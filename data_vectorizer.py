@@ -15,6 +15,7 @@ PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')
 PINECONE_API_ENV = os.getenv('PINECONE_API_ENV')
 HF_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME")
+PINECONE_NAME_SPACE = os.getenv("PINECONE_NAME_SPACE")
 
 def from_embedding_list_to_pinecone_format(l,docs,source,file_number):
     #pinecone relies on a specific structure for th embeddings
@@ -51,7 +52,7 @@ def vectorize_folder_content(folder_path):
         #create embeddings
         embedded_data_list = embeddings.embed_documents([t.page_content for t in docs])
         #add data to pinecone
-        index.upsert(from_embedding_list_to_pinecone_format(embedded_data_list,docs,file,n),namespace="ea1")
+        index.upsert(from_embedding_list_to_pinecone_format(embedded_data_list,docs,file,n),namespace=PINECONE_NAME_SPACE)
         n+=1
 
     
