@@ -1,0 +1,4 @@
+KIA_v1/data/*
+KIA_v2/action_taker/data/*
+KIA_v1/models/*
+.env
