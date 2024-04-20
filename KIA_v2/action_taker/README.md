@@ -18,6 +18,9 @@ You can install the `crewai` library using pip if it's available:
 pip install crewai
 ```
 
+## Considerations
+Groq in combination with the model I used (LLama3-80b) supports only a maximum of 5000 tokens. Therefore, for long files, I recommend to have an AI reduce the size of the text file before hand.
+
 ## Components
 
 ### Agents
